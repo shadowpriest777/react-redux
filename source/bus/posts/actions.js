@@ -7,7 +7,7 @@ export const fillPosts = (posts) => {
     }
 }
 
-export const fetchPhotosAsync = () => {
+export const fetchPostsAsync = () => {
     return {
         type: FETCH_POSTS_ASYNC
     }
