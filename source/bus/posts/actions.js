@@ -1,39 +1,29 @@
-import { FILL_POSTS, ADD_NEW_POST, FETCH_POSTS_ASYNC, CREATE_POSTS_ASYNC } from './types.js'
-const { v4 } = require('uuid');
+import { types} from './types.js'
 import { api } from '../../REST';
-import { now } from "moment";
 
 export const fillPosts = (posts) => {
     return {
-        type: FILL_POSTS,
+        type: types.FILL_POSTS,
         payload: posts
     }
 }
 
 export const addNewPost = (post) => {
     return {
-        type: ADD_NEW_POST,
+        type: types.ADD_NEW_POST,
         payload: post
     }
 }
 
-export const fetchPostsAsync = () => async (dispatch) => {
-    dispatch({
-        type: FETCH_POSTS_ASYNC
-    });
-
-    const response = await api.posts.fetch();
-    const result = await response.json();
-
-    dispatch(fillPosts(result))
+export const fetchPostsAsync = () => {
+    return {
+        type: types.FETCH_POSTS_ASYNC
+    }
 }
 
-export const createPostAsync = (comment) => async (dispatch) => {
-    dispatch({
-        type: CREATE_POSTS_ASYNC
-    });
-
-    const result = await api.posts.fakeFetchTypePost(comment);
-
-    dispatch(addNewPost(result))
+export const createPostAsync = (comment) => {
+    return {
+        type: types.CREATE_POSTS_ASYNC,
+        payload: comment
+    }
 }

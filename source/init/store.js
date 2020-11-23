@@ -3,8 +3,11 @@ import { createStore } from "redux";
 
 // Reducers
 import { rootReducer } from "./rootReducer";
+import { rootSaga } from "./rootSaga";
 
-// Enhancer
-import { enhancerStore } from "./middleware/core";
+// Middleware
+import { enhancerStore, sagaMiddleware } from "./middleware/core";
 
 export const store = createStore(rootReducer, enhancerStore);
+
+sagaMiddleware.run(rootSaga);
