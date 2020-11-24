@@ -20,9 +20,19 @@ export const api = {
                     "lastName": "Wix"
                 }
             }
-        },
-        createNewUser (data) {
-            return   {"id": v4()}
+        }
+    },
+    auth: {
+        signup (data) {
+            return fetch('https://vue-spa-ed108.firebaseio.com/users.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    ...data
+                })
+            });
         }
     }
 }
