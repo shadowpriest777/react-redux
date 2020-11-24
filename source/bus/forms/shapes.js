@@ -24,7 +24,6 @@ export const signup = {
         lastName:  '',
         email:     '',
         password:  '',
-        invite:    '',
     },
     schema: object().shape({
         firstName: string().required(),
@@ -34,11 +33,7 @@ export const signup = {
             .email(),
         password: string()
             .required()
-            .min(5),
-        invite: string()
-            .required()
-            .min(12)
-            .max(12),
+            .min(5)
     }),
 };
 

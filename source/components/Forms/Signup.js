@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import cx from 'classnames';
 
@@ -7,14 +8,20 @@ import cx from 'classnames';
 import Styles from './styles.m.css';
 import { signup } from '../../bus/forms/shapes';
 
-export default class SignupForm extends Component {
-    static defaultProps = {
-        // State
-        isFetching: false,
+// Actions
+import { authActions } from "../../bus/auth/actions";
 
-        // Actions
-        signupAsync: () => {},
-    };
+const mapStateToProps = () => {
+    return {
+        isFetching: false
+    }
+}
+
+const mapDispatchToProps = {
+    signupAsync: authActions.signupAsync
+}
+@connect(mapStateToProps, mapDispatchToProps)
+export default class SignupForm extends Component {
 
     _submitSignupForm = (user) => {
         this.props.signupAsync(user);
@@ -82,13 +89,6 @@ export default class SignupForm extends Component {
                                         disabled = { isFetching }
                                         name = 'password'
                                         placeholder = 'Пароль'
-                                        type = 'password'
-                                    />
-                                    <Field
-                                        className = { inviteStyle }
-                                        disabled = { isFetching }
-                                        name = 'invite'
-                                        placeholder = 'Секретное слово'
                                         type = 'password'
                                     />
                                     <button className = { buttonStyle } disabled = { isFetching } type = 'submit'>

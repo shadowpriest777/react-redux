@@ -20,6 +20,9 @@ export const api = {
                     "lastName": "Wix"
                 }
             }
+        },
+        createNewUser (data) {
+            return   {"id": v4()}
         }
     }
 }
